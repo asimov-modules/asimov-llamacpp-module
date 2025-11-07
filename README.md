@@ -1,10 +1,10 @@
-# ASIMOV Template Module
+# ASIMOV Llamacpp Module
 
 [![License](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://unlicense.org)
-[![Package on Crates.io](https://img.shields.io/crates/v/asimov-template-module)](https://crates.io/crates/asimov-template-module)
-[![Documentation](https://docs.rs/asimov-template-module/badge.svg)](https://docs.rs/asimov-template-module)
+[![Package on Crates.io](https://img.shields.io/crates/v/asimov-llamacpp-module)](https://crates.io/crates/asimov-llamacpp-module)
+[![Documentation](https://docs.rs/asimov-llamacpp-module/badge.svg)](https://docs.rs/asimov-llamacpp-module)
 
-[ASIMOV] module template. Fork this to create your own module!
+[ASIMOV] Llamacpp module.
 
 ## ✨ Features
 
@@ -13,69 +13,66 @@
 ## 🛠️ Prerequisites
 
 - [Rust] 1.85+ (2024 edition) if building from source code
+- You must have a **running llama.cpp server** with a **loaded GGUF model**
 
 ## ⬇️ Installation
 
-### Installation with the [ASIMOV CLI]
+### Installation with [ASIMOV CLI]
 
 ```bash
-asimov module install template -v
+asimov module install llamacpp -v
 ```
 
 ### Installation from Source Code
 
 ```bash
-cargo install asimov-template-module
+cargo install asimov-llamacpp-module
 ```
 
 ## 👉 Examples
 
 ```bash
-asimov-template-emitter
+asimov-llamacpp-prompter
 ```
 
 ## ⚙ Configuration
 
-This module requires no configuration.
+Via ASIMOV CLI
+
+```bash
+asimov module config llamacpp
+```
+
+Via environment variables
+
+```bash
+export LLAMACPP_API_ENDPOINT="http://127.0.0.1:8080"
+export LLAMACPP_MODEL="TinyLlama-1.1B-Chat-v1.0"
+
+```
 
 ## 📚 Reference
 
-### Installed Binaries
+### Prompt
 
-- `asimov-template-emitter`
-
-### `asimov-template-emitter`
-
-```
-asimov-template-emitter
-
-Usage: asimov-template-emitter [OPTIONS]
-
-Options:
-  -d, --debug       Enable debugging output
-      --license     Show license information
-  -v, --verbose...  Enable verbose output (may be repeated for more verbosity)
-  -V, --version     Print version information
-  -h, --help        Print help
+```bash
+echo "Why is the sky blue?" | asimov-llamacpp-prompter
 ```
 
 ## 👨‍💻 Development
 
 ```bash
-git clone https://github.com/asimov-modules/asimov-template-module.git
+git clone https://github.com/asimov-modules/asimov-llamacpp-module.git
 ```
 
 ---
 
-[![Share on X](https://img.shields.io/badge/share%20on-x-03A9F4?logo=x)](https://x.com/intent/post?url=https://github.com/asimov-modules/asimov-template-module&text=asimov-template-module)
-[![Share on Reddit](https://img.shields.io/badge/share%20on-reddit-red?logo=reddit)](https://reddit.com/submit?url=https://github.com/asimov-modules/asimov-template-module&title=asimov-template-module)
-[![Share on Hacker News](https://img.shields.io/badge/share%20on-hn-orange?logo=ycombinator)](https://news.ycombinator.com/submitlink?u=https://github.com/asimov-modules/asimov-template-module&t=asimov-template-module)
-[![Share on Facebook](https://img.shields.io/badge/share%20on-fb-1976D2?logo=facebook)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/asimov-modules/asimov-template-module)
-[![Share on LinkedIn](https://img.shields.io/badge/share%20on-linkedin-3949AB?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/asimov-modules/asimov-template-module)
+[![Share on X](https://img.shields.io/badge/share%20on-x-03A9F4?logo=x)](https://x.com/intent/post?url=https://github.com/asimov-modules/asimov-llamacpp-module&text=asimov-llamacpp-module)
+[![Share on Reddit](https://img.shields.io/badge/share%20on-reddit-red?logo=reddit)](https://reddit.com/submit?url=https://github.com/asimov-modules/asimov-llamacpp-module&title=asimov-llamacpp-module)
+[![Share on Hacker News](https://img.shields.io/badge/share%20on-hn-orange?logo=ycombinator)](https://news.ycombinator.com/submitlink?u=https://github.com/asimov-modules/asimov-llamacpp-module&t=asimov-llamacpp-module)
+[![Share on Facebook](https://img.shields.io/badge/share%20on-fb-1976D2?logo=facebook)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/asimov-modules/asimov-llamacpp-module)
+[![Share on LinkedIn](https://img.shields.io/badge/share%20on-linkedin-3949AB?logo=linkedin)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/asimov-modules/asimov-llamacpp-module)
 
 [ASIMOV]: https://asimov.sh
 [ASIMOV CLI]: https://cli.asimov.sh
-[JSON-LD]: https://json-ld.org
-[KNOW]: https://know.dev
-[RDF]: https://www.w3.org/TR/rdf12-primer/
 [Rust]: https://rust-lang.org
