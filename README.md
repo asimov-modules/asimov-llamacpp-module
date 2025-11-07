@@ -46,8 +46,8 @@ asimov module config llamacpp
 Via environment variables
 
 ```bash
-export LLAMACPP_API_ENDPOINT="http://127.0.0.1:8080"
-export LLAMACPP_MODEL="TinyLlama-1.1B-Chat-v1.0"
+export ASIMOV_LLAMACPP_API_ENDPOINT="http://127.0.0.1:8080"
+export ASIMOV_LLAMACPP_MODEL="TinyLlama-1.1B-Chat-v1.0"
 
 ```
 

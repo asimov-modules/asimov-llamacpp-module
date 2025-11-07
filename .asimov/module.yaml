@@ -13,6 +13,6 @@ provides:
 config:
   variables:
     - name: endpoint
-      environment: LLAMACPP_API_ENDPOINT
+      environment: ASIMOV_LLAMACPP_API_ENDPOINT
     - name: model
-      environment: LLAMACPP_MODEL
+      environment: ASIMOV_LLAMACPP_MODEL
