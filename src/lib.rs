@@ -7,27 +7,32 @@ use asimov_module::{prelude::*, tracing};
 use core::error::Error;
 use serde_json::{Value, json};
 
-#[derive(Clone, Debug, bon::Builder)]
-#[builder(on(String, into))]
+#[derive(Clone, Debug)]
 pub struct Options {
     /// Base URL of the llama.cpp server (e.g. http://localhost:8080)
     pub endpoint: String,
-
     /// Model identifier (e.g. "llama3")
     pub model: String,
+    /// Optional raw GBNF grammar text to constrain decoding
+    pub grammar: Option<String>,
 }
 
-/// Generate a response using llama.cpp’s OpenAI-compatible endpoint.
-/// Example: POST /v1/chat/completions
+/// POST /v1/chat/completions with optional GBNF grammar
 pub fn generate(input: impl AsRef<str>, options: &Options) -> Result<Vec<String>, Box<dyn Error>> {
     const UA: &str = "asimov-llamacpp-module";
     const CT_JSON: &str = "application/json";
 
-    let req = json!({
+    let mut req = json!({
         "model": options.model,
         "messages": [{ "role": "user", "content": input.as_ref() }],
         "stream": false
     });
+
+    if let Some(g) = &options.grammar {
+        if let Value::Object(obj) = &mut req {
+            obj.insert("grammar".into(), Value::String(g.clone()));
+        }
+    }
 
     let agent = ureq::Agent::config_builder()
         .http_status_as_error(false)

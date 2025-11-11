@@ -59,6 +59,19 @@ export ASIMOV_LLAMACPP_MODEL="TinyLlama-1.1B-Chat-v1.0"
 echo "Why is the sky blue?" | asimov-llamacpp-prompter
 ```
 
+### 🧪 Simple GBNF example
+
+1) Create a tiny grammar that only allows `ok`:
+```bnf
+# only_ok.gbnf
+root ::= "ok" "\n"
+```
+2) Run the prompter with the grammar:
+```bash
+echo "Say anything." | asimov-llamacpp-prompter -g only_ok.gbnf
+# => ok
+```
+
 ## 👨‍💻 Development
 
 ```bash

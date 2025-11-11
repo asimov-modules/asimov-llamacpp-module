@@ -15,10 +15,19 @@ struct Options {
     #[clap(flatten)]
     flags: StandardOptions,
 
-    #[clap(long, short = 'm')]
+    #[clap(long, short)]
     model: Option<String>,
 
+    /// Path to a GBNF grammar file (used to constrain decoding)
+    #[clap(long, short)]
+    grammar: Option<String>,
+
+    /// Input file (defaults to STDIN)
+    #[clap(long, short)]
     input: Option<String>,
+
+    /// Output file (defaults to STDOUT)
+    #[clap(long, short)]
     output: Option<String>,
 }
 
@@ -88,10 +97,23 @@ pub fn main() -> Result<SysexitsError, Box<dyn Error>> {
         Box::new(std::io::stdout().lock())
     };
 
-    let options = asimov_llamacpp_module::Options::builder()
-        .endpoint(endpoint)
-        .model(model)
-        .build();
+    let grammar: Option<String> = if let Some(path) = options.grammar {
+        match std::fs::read_to_string(&path) {
+            Ok(s) => Some(s),
+            Err(e) => {
+                tracing::error!("unable to read grammar file '{}': {e}", path);
+                return Ok(EX_NOINPUT);
+            },
+        }
+    } else {
+        None
+    };
+
+    let options = asimov_llamacpp_module::Options {
+        endpoint,
+        model,
+        grammar,
+    };
 
     let response = asimov_llamacpp_module::generate(&input, &options)?;
 
