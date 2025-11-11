@@ -103,9 +103,11 @@ pub fn main() -> Result<SysexitsError, Box<dyn Error>> {
             Err(e) => {
                 tracing::error!("unable to read grammar file '{}': {e}", path);
                 return Ok(EX_NOINPUT);
-            }
+            },
         }
-    } else { None };
+    } else {
+        None
+    };
 
     let options = asimov_llamacpp_module::Options {
         endpoint,
